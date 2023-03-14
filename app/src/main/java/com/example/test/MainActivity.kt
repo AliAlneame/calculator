@@ -30,10 +30,33 @@ class MainActivity : AppCompatActivity() {
         convertButton = findViewById(R.id.button)
         convertedNumberTextView = findViewById(R.id.convertednumber)
 
-        binaryRadioButton.setOnClickListener { setRadioButtonState(arrayOf(true, false, false, false)) }
-        decimalRadioButton.setOnClickListener { setRadioButtonState(arrayOf(false, true, false, false)) }
-        octalRadioButton.setOnClickListener { setRadioButtonState(arrayOf(false, false, true, false)) }
-        hexaRadioButton.setOnClickListener { setRadioButtonState(arrayOf(false, false, false, true)) }
+        binaryRadioButton.setOnClickListener {
+            binaryRadioButton.isChecked = true
+            decimalRadioButton.isChecked = false
+            octalRadioButton.isChecked = false
+            hexaRadioButton.isChecked = false
+        }
+
+        decimalRadioButton.setOnClickListener {
+            binaryRadioButton.isChecked = false
+            decimalRadioButton.isChecked = true
+            octalRadioButton.isChecked = false
+            hexaRadioButton.isChecked = false
+        }
+
+        octalRadioButton.setOnClickListener {
+            binaryRadioButton.isChecked = false
+            decimalRadioButton.isChecked = false
+            octalRadioButton.isChecked = true
+            hexaRadioButton.isChecked = false
+        }
+
+        hexaRadioButton.setOnClickListener {
+            binaryRadioButton.isChecked = false
+            decimalRadioButton.isChecked = false
+            octalRadioButton.isChecked = false
+            hexaRadioButton.isChecked = true
+        }
 
         convertButton.setOnClickListener {
             val input = editText.text.toString()
@@ -48,13 +71,6 @@ class MainActivity : AppCompatActivity() {
 
             convertedNumberTextView.text = "$convertedNumber"
         }
-    }
-
-    private fun setRadioButtonState(isChecked: Array<Boolean>) {
-        binaryRadioButton.isChecked = isChecked[0]
-        decimalRadioButton.isChecked = isChecked[1]
-        octalRadioButton.isChecked = isChecked[2]
-        hexaRadioButton.isChecked = isChecked[3]
     }
 
     private fun convertToBinary(decimal: Int): String {
